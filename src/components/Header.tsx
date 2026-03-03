@@ -28,16 +28,13 @@ export default function Header({
             <Menu size={22} />
           </button>
 
-          {/* Breadcrumb */}
           <nav aria-label="Breadcrumb" className="min-w-0">
             <ol className="flex items-center gap-2 text-sm truncate">
-              {/* Always visible */}
               <li className="flex items-center gap-2 shrink-0">
                 <span className="font-semibold text-text-primary">Scan</span>
                 <Home size={14} className="text-text-secondary/70" />
               </li>
 
-              {/* Hide middle part on mobile */}
               <li className="hidden sm:inline text-text-secondary/70">/</li>
 
               <li className="hidden sm:inline">
@@ -51,7 +48,6 @@ export default function Header({
 
               <li className="hidden sm:inline text-text-secondary/70">/</li>
 
-              {/* Always visible current page */}
               <li className="truncate">
                 <span className="text-accent font-medium">New Scan</span>
               </li>
@@ -59,12 +55,10 @@ export default function Header({
           </nav>
         </div>
 
-        {/* RIGHT SIDE */}
         <section
           aria-label="Scan actions"
           className="flex items-center gap-2 sm:gap-4 shrink-0"
         >
-          {/* Theme Toggle */}
           <button
             onClick={toggleTheme}
             className="p-2 text-text-secondary hover:text-text-primary transition rounded-lg hover:bg-background"
@@ -73,7 +67,6 @@ export default function Header({
             {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
           </button>
 
-          {/* Export - hide on very small screens */}
           <button
             type="button"
             className="hidden md:inline-flex px-4 py-2 text-sm font-medium border border-border rounded-lg text-text-primary bg-surface hover:bg-background transition"
@@ -81,7 +74,6 @@ export default function Header({
             Export
           </button>
 
-          {/* Scan Toggle */}
           <button
             type="button"
             onClick={toggleScan}

@@ -8,11 +8,13 @@ import Dashboard from "./pages/Dashboard";
 import AppLayout from "./components/AppLayout";
 import { Navigate } from "react-router-dom";
 import ScanDashboard from "./pages/ScanDashboard";
+import ErrorPage from "./pages/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <AppLayout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
