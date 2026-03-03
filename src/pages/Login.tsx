@@ -3,16 +3,20 @@ import { Check, Loader2, Star } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import Logo from "../components/ui/logo";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 const SignupLoginForm = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     setTimeout(() => {
       navigate("/dashboard");
+      toast.success("Login successfull!", {
+        duration: 2000,
+      });
     }, 2500);
   };
 
@@ -26,7 +30,6 @@ const SignupLoginForm = () => {
       </div>
 
       <div className="min-h-screen flex items-center justify-between px-10 lg:px-20">
-        {/* Left Side */}
         <div className="hidden lg:flex flex-col max-w-xl text-white space-y-8">
           <h1 className="text-4xl font-semibold leading-tight">
             Expert level Cybersecurity <br />
@@ -66,7 +69,6 @@ const SignupLoginForm = () => {
           </div>
         </div>
 
-        {/* Right Side Form */}
         <div className="w-full max-w-md bg-surface rounded-2xl shadow-md p-8">
           <h1 className="text-3xl font-semibold text-text-primary text-center mb-2">
             Sign up
@@ -79,7 +81,6 @@ const SignupLoginForm = () => {
             </span>
           </p>
 
-          {/* FORM */}
           <form className="space-y-4" onSubmit={handleSubmit}>
             <input
               type="text"

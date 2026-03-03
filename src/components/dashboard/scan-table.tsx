@@ -68,7 +68,7 @@ export default function ScanTable() {
               </tr>
             </thead>
 
-            <tbody className="divide-y divide-gray-100">
+            <tbody className="">
               {scans.map((scan) => (
                 <tr key={scan.id} className="hover:bg-background transition">
                   <td className="px-6 py-5 font-medium text-text-primary">
@@ -86,7 +86,9 @@ export default function ScanTable() {
                       vulnerabilities={scan.vulnerabilities}
                     />
                   </td>
-                  <td className="px-6 py-5 text-text-secondary">{scan.lastScan}</td>
+                  <td className="px-6 py-5 text-text-secondary">
+                    {scan.lastScan}
+                  </td>
                 </tr>
               ))}
             </tbody>

@@ -86,10 +86,11 @@ export default function Header({
               transition
               border
               whitespace-nowrap
+              cursor-pointer
               ${
                 isScanRunning
-                  ? "bg-[#FFF0F0] text-[#FF4D4F] border-[#FF4D4F] hover:bg-[#FF4D4F]/10"
-                  : "bg-[#F0FFF4] text-[#52C41A] border-[#52C41A] hover:bg-[#52C41A]/10"
+                  ? "bg-[#FF4D4F]/5 text-[#FF4D4F] border-[#FF4D4F] hover:bg-[#FF4D4F]/10"
+                  : "bg-[#F0FFF4]/5 text-[#52C41A] border-[#52C41A] hover:bg-[#52C41A]/10"
               }
             `}
           >

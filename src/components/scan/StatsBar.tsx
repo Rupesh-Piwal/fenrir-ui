@@ -4,7 +4,7 @@ export const StatsBar = () => {
   return (
     <div className="bg-surface border-t border-border flex items-center px-6 py-3 text-xs text-text-secondary w-full justify-between">
       {/* Metrics Section */}
-      <div className="flex items-center gap-8">
+      <div className="hidden md:flex items-center gap-8">
         <div className="flex items-center gap-2">
           <div className="w-1.5 h-1.5 rounded-full bg-text-secondary"></div>
           <span>Sub-Agents: {scanStats.subAgents}</span>
