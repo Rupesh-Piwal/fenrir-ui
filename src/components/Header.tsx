@@ -1,17 +1,20 @@
-import { Home, Menu } from "lucide-react";
+import { Home, Menu, Sun, Moon } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useTheme } from "../context/ThemeContext";
 
 interface HeaderProps {
   toggleSidebar: () => void;
 }
 
 export default function Header({ toggleSidebar }: HeaderProps) {
+  const { theme, toggleTheme } = useTheme();
+
   return (
-    <header className="h-16 bg-white border-b border-gray-100 flex items-center justify-between px-6">
+    <header className="h-16 bg-surface border-b border-border/50 flex items-center justify-between px-6">
       <div className="flex items-center gap-4">
         <button
           onClick={toggleSidebar}
-          className="lg:hidden text-gray-500 hover:text-gray-700"
+          className="lg:hidden text-text-secondary hover:text-gray-700"
           aria-label="Open menu"
         >
           <Menu size={22} />
@@ -20,25 +23,25 @@ export default function Header({ toggleSidebar }: HeaderProps) {
         <nav aria-label="Breadcrumb">
           <ol className="flex items-center gap-2 text-sm">
             <li className="flex items-center gap-2">
-              <span className="font-semibold text-gray-800">Scan</span>
-              <Home size={14} className="text-gray-400 ml-1" />
+              <span className="font-semibold text-text-primary">Scan</span>
+              <Home size={14} className="text-text-secondary/70 ml-1" />
             </li>
 
-            <li className="text-gray-300">/</li>
+            <li className="text-text-secondary/70">/</li>
 
             <li>
               <Link
                 to="/private-assets"
-                className="text-gray-400 hover:text-gray-600 font-medium transition"
+                className="text-text-secondary/70 hover:text-text-secondary font-medium transition"
               >
                 Private Assets
               </Link>
             </li>
 
-            <li className="text-gray-300">/</li>
+            <li className="text-text-secondary/70">/</li>
 
             <li aria-current="page">
-              <span className="text-[#0CC8A8] font-medium">New Scan</span>
+              <span className="text-accent font-medium">New Scan</span>
             </li>
           </ol>
         </nav>
@@ -46,8 +49,16 @@ export default function Header({ toggleSidebar }: HeaderProps) {
 
       <section aria-label="Scan actions" className="flex items-center gap-4">
         <button
+          onClick={toggleTheme}
+          className="p-2 text-text-secondary hover:text-text-primary transition rounded-lg hover:bg-background"
+          aria-label="Toggle theme"
+        >
+          {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
+        </button>
+
+        <button
           type="button"
-          className="hidden sm:inline-flex px-4 py-2 text-sm font-medium border border-gray-200 rounded-lg text-gray-700 bg-white hover:bg-gray-50 transition drop-shadow-sm"
+          className="hidden sm:inline-flex px-4 py-2 text-sm font-medium border border-border rounded-lg text-gray-700 bg-surface hover:bg-background transition drop-shadow-sm"
         >
           Export Report
         </button>

@@ -105,8 +105,8 @@ export default function SeverityCard({
   return (
     <article
       className="
-        bg-white
-        border border-gray-200
+        bg-surface
+        border border-border
         rounded-xl
         p-4 sm:p-5
         transition
@@ -115,7 +115,7 @@ export default function SeverityCard({
       "
     >
       <header className="flex items-center justify-between">
-        <h3 className="text-gray-500 text-xs sm:text-sm font-semibold tracking-wide">
+        <h3 className="text-text-secondary text-xs sm:text-sm font-semibold tracking-wide">
           {label}
         </h3>
 
@@ -125,13 +125,13 @@ export default function SeverityCard({
       </header>
 
       <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
-        <span className="text-2xl sm:text-[28px] font-bold text-gray-800">
+        <span className="text-2xl sm:text-[28px] font-bold text-text-primary">
           {count}
         </span>
 
         <div
           className={`flex items-center text-xs font-semibold ${
-            isIncrease ? "text-[#E63946]" : "text-[#0CC8A8]"
+            isIncrease ? "text-[#E63946]" : "text-accent"
           }`}
         >
           {isIncrease ? (

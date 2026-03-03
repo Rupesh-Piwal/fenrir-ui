@@ -7,7 +7,7 @@ const Button = ({ children, onClick }: ButtonProps) => {
   return (
     <button
       onClick={onClick}
-      className="px-4 py-2 rounded-md bg-teal-500 text-white hover:bg-teal-600 transition"
+      className="px-4 py-2 rounded-md bg-accent text-white hover:bg-accent transition"
     >
       {children}
     </button>

@@ -5,44 +5,44 @@ export default function DashboardStats() {
   const { meta, severities } = dashboardStats;
 
   return (
-    <section className="w-full bg-white bg-opacity-0">
-      <div className="hidden md:block pt-2 pb-6 text-xs text-gray-500 font-medium px-2">
+    <section className="w-full bg-surface bg-opacity-0">
+      <div className="hidden md:block pt-2 pb-6 text-xs text-text-secondary font-medium px-2">
         <div className="flex flex-wrap items-center justify-between">
           <div className="flex flex-wrap items-center gap-6">
             <span className="flex items-center gap-2">
-              Org: <strong className="text-gray-800">{meta.orgName}</strong>
+              Org: <strong className="text-text-primary">{meta.orgName}</strong>
             </span>
             <div className="bg-gray-200 w-px h-4"></div>
 
             <span className="flex items-center gap-2">
-              Owner: <strong className="text-gray-800">{meta.owner}</strong>
+              Owner: <strong className="text-text-primary">{meta.owner}</strong>
             </span>
             <div className="bg-gray-200 w-px h-4"></div>
 
             <span className="flex items-center gap-2">
               Total Scans:{" "}
-              <strong className="text-gray-800">{meta.totalScans}</strong>
+              <strong className="text-text-primary">{meta.totalScans}</strong>
             </span>
             <div className="bg-gray-200 w-px h-4"></div>
 
             <span className="flex items-center gap-2">
               Scheduled:{" "}
-              <strong className="text-gray-800">{meta.scheduled}</strong>
+              <strong className="text-text-primary">{meta.scheduled}</strong>
             </span>
             <div className="bg-gray-200 w-px h-4"></div>
 
             <span className="flex items-center gap-2">
-              Rescans: <strong className="text-gray-800">{meta.rescans}</strong>
+              Rescans: <strong className="text-text-primary">{meta.rescans}</strong>
             </span>
             <div className="bg-gray-200 w-px h-4"></div>
 
             <span className="flex items-center gap-2">
               Failed Scans:{" "}
-              <strong className="text-gray-800">{meta.failedScans}</strong>
+              <strong className="text-text-primary">{meta.failedScans}</strong>
             </span>
           </div>
 
-          <div className="flex items-center gap-1.5 text-[#0CC8A8] font-semibold">
+          <div className="flex items-center gap-1.5 text-accent font-semibold">
             <svg
               width="14"
               height="14"
@@ -62,7 +62,7 @@ export default function DashboardStats() {
         </div>
       </div>
 
-      <div className="py-6 border-b border-gray-100">
+      <div className="py-6 border-b border-border/50">
         <div className="grid gap-6 grid-cols-2 md:grid-cols-4 px-2">
           {severities.map((item) => (
             <SeverityCard key={item.level} {...item} />

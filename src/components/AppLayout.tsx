@@ -19,7 +19,7 @@ export default function AppLayout() {
       {/* Sidebar */}
       <div
         className={`
-          fixed z-50 inset-y-0 left-0 w-64 bg-white border-r transform
+          fixed z-50 inset-y-0 left-0 w-64 bg-surface border-r transform
           transition-transform duration-300
           ${isOpen ? "translate-x-0" : "-translate-x-full"}
           lg:translate-x-0 lg:static lg:flex
@@ -32,7 +32,7 @@ export default function AppLayout() {
       <div className="flex flex-col flex-1">
         <Header toggleSidebar={() => setIsOpen(true)} />
 
-        <main className="flex-1 overflow-y-auto bg-gray-50 p-4">
+        <main className="flex-1 overflow-y-auto bg-background p-4">
           <Outlet />
         </main>
       </div>

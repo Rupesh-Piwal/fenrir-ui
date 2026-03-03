@@ -7,6 +7,7 @@ import SignupLoginForm from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import AppLayout from "./components/AppLayout";
 import { Navigate } from "react-router-dom";
+import ScanDashboard from "./pages/ScanDashboard";
 
 const router = createBrowserRouter([
   {
@@ -18,8 +19,12 @@ const router = createBrowserRouter([
         element: <Navigate to="/dashboard" replace />,
       },
       {
-        path: "dashboard",
+        path: "/dashboard",
         element: <Dashboard />,
+      },
+      {
+        path: "/scan",
+        element: <ScanDashboard />,
       },
     ],
   },

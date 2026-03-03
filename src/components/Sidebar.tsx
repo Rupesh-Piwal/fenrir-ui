@@ -9,11 +9,11 @@ interface SidebarProps {
 
 export default function Sidebar({ closeSidebar }: SidebarProps) {
   return (
-    <aside className="w-64 h-full bg-white border-r border-gray-100 flex flex-col">
+    <aside className="w-64 h-full bg-surface border-r border-border/50 flex flex-col">
       {/* Scrollable Content */}
       <div className="flex-1 overflow-y-auto">
         <div className="pl-6 pt-6">
-          <Logo textColor="text-[#0CC8A8]" />
+          <Logo textColor="text-accent" />
         </div>
 
         <nav className="pr-4 mt-10 space-y-1">
@@ -26,10 +26,10 @@ export default function Sidebar({ closeSidebar }: SidebarProps) {
                 to={item.path}
                 onClick={closeSidebar}
                 className={({ isActive }) =>
-                  `flex items-center gap-3 pl-8 pr-4 py-3 text-sm font-medium transition-all rounded-r-full ${
+                  `flex items-center gap-3 pl-8 pr-4 py-3 text-sm font-medium transition-all rounded-full ${
                     isActive
-                      ? "bg-[#E6F9F6] text-[#0CC8A8]"
-                      : "text-gray-500 hover:bg-gray-50"
+                      ? "bg-[#0CC8A8]/20 text-accent"
+                      : "text-text-secondary hover:bg-background"
                   }`
                 }
               >
@@ -40,7 +40,7 @@ export default function Sidebar({ closeSidebar }: SidebarProps) {
           })}
         </nav>
 
-        <div className="my-6 border-t border-gray-100" />
+        <div className="my-6 border-t border-border/50" />
 
         <nav className="pr-4 space-y-1">
           {navItemsBottom.map((item) => {
@@ -52,10 +52,10 @@ export default function Sidebar({ closeSidebar }: SidebarProps) {
                 to={item.path}
                 onClick={closeSidebar}
                 className={({ isActive }) =>
-                  `flex items-center gap-3 pl-8 pr-4 py-3 text-sm font-medium transition-all rounded-r-full ${
+                  `flex items-center gap-3 pl-8 pr-4 py-3 text-sm font-medium transition-all rounded-full ${
                     isActive
-                      ? "bg-[#E6F9F6] text-[#0CC8A8]"
-                      : "text-gray-500 hover:bg-gray-50"
+                      ? "bg-[#0CC8A8]/20 text-accent"
+                      : "text-text-secondary hover:bg-background"
                   }`
                 }
               >
@@ -73,11 +73,11 @@ export default function Sidebar({ closeSidebar }: SidebarProps) {
             <img
               src="https://i.pravatar.cc/40"
               alt="avatar"
-              className="w-10 h-10 rounded-full bg-yellow-400 mix-blend-multiply"
+              className="w-10 h-10 rounded-full"
             />
             <div>
-              <p className="text-xs text-gray-400">admin@edu.com</p>
-              <p className="text-sm font-semibold text-gray-800">
+              <p className="text-xs text-text-secondary/70">admin@edu.com</p>
+              <p className="text-sm font-semibold text-text-primary">
                 Security Lead
               </p>
             </div>

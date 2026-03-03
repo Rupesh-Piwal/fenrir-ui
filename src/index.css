@@ -3,6 +3,42 @@
 /* Enable class-based dark mode */
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* ================= THEME TOKENS ================= */
+
+:root {
+  --background: #f8fafc;
+  --surface: #ffffff;
+  --border: #e5e7eb;
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+  --accent: #0cc8a8;
+  --danger: #e63946;
+}
+
+.dark {
+  --background: #0f1219;
+  --surface: #1a1d24;
+  --border: #2b303b;
+  --text-primary: #f8fafc;
+  --text-secondary: #9ba1a6;
+  --accent: #05c8a6;
+  --danger: #e54545;
+}
+
+/* ================= TAILWIND v4 THEME MAPPING ================= */
+
+@theme {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-accent: var(--accent);
+  --color-danger: var(--danger);
+}
+
+/* ================= GLOBAL TYPOGRAPHY ================= */
+
 :root {
   font-family:
     "Inter",
@@ -24,4 +60,25 @@ body {
   font-family: inherit;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background);
+  color: var(--text-primary);
+}
+
+/* ================= SMOOTH THEME TRANSITION ================= */
+
+/* Apply smooth transitions only during theme toggle */
+.theme-transition *,
+.theme-transition {
+  transition:
+    background-color 250ms ease,
+    border-color 250ms ease,
+    color 200ms ease,
+    fill 200ms ease,
+    stroke 200ms ease,
+    box-shadow 250ms ease;
+}
+
+/* Smooth page background change */
+html {
+  transition: background-color 250ms ease;
 }

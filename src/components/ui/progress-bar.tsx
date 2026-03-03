@@ -3,11 +3,11 @@ export function ProgressBar({ value }: { value: number }) {
         <div className="flex items-center gap-3">
             <div className="w-32 h-2 bg-gray-200 rounded-full">
                 <div
-                    className="h-2 bg-teal-600 rounded-full"
+                    className="h-2 bg-accent rounded-full"
                     style={{ width: `${value}%` }}
                 />
             </div>
-            <span className="text-sm text-gray-600">{value}%</span>
+            <span className="text-sm text-text-secondary">{value}%</span>
         </div>
     );
 }
