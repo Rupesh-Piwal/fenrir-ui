@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import DashboardStats from "../components/dashboard/dashboard-stats";
 import ScanTable from "../components/dashboard/scan-table";
-import DashboardStatsSkeleton from "../components/dashboard/DashboardStatsSkeleton";
-import ScanTableSkeleton from "../components/dashboard/ScanTableSkeleton";
+import DashboardStatsSkeleton from "../components/dashboard/dashboard-stats-skeleton";
+import ScanTableSkeleton from "../components/dashboard/scan-table-skeleton";
 
 const Dashboard = () => {
   const [loading, setLoading] = useState(true);
