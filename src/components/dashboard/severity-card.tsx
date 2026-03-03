@@ -130,7 +130,7 @@ export default function SeverityCard({
         </span>
 
         <div
-          className={`flex items-center text-xs font-semibold ${
+          className={`flex items-center text-[10px] font-semibold ${
             isIncrease ? "text-[#E63946]" : "text-accent"
           }`}
         >

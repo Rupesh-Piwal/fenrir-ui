@@ -9,8 +9,7 @@ interface SidebarProps {
 
 export default function Sidebar({ closeSidebar }: SidebarProps) {
   return (
-    <aside className="w-64 h-full bg-surface border-r border-border/50 flex flex-col">
-      {/* Scrollable Content */}
+    <aside className="w-64 h-full bg-surface flex flex-col">
       <div className="flex-1 overflow-y-auto">
         <div className="pl-6 pt-6">
           <Logo textColor="text-accent" />

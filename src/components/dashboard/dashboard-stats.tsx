@@ -5,8 +5,8 @@ export default function DashboardStats() {
   const { meta, severities } = dashboardStats;
 
   return (
-    <section className="w-full bg-surface bg-opacity-0">
-      <div className="hidden md:block pt-2 pb-6 text-xs text-text-secondary font-medium px-2">
+    <section className="w-full bg-surface bg-opacity-0 border border-border rounded-lg p-1">
+      <div className="hidden md:block pt-2 pb-6 text-xs text-text-secondary font-medium px-2 ">
         <div className="flex flex-wrap items-center justify-between">
           <div className="flex flex-wrap items-center gap-6">
             <span className="flex items-center gap-2">
@@ -32,7 +32,8 @@ export default function DashboardStats() {
             <div className="bg-gray-200 w-px h-4"></div>
 
             <span className="flex items-center gap-2">
-              Rescans: <strong className="text-text-primary">{meta.rescans}</strong>
+              Rescans:{" "}
+              <strong className="text-text-primary">{meta.rescans}</strong>
             </span>
             <div className="bg-gray-200 w-px h-4"></div>
 

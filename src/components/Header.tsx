@@ -58,14 +58,14 @@ export default function Header({ toggleSidebar }: HeaderProps) {
 
         <button
           type="button"
-          className="hidden sm:inline-flex px-4 py-2 text-sm font-medium border border-border rounded-lg text-gray-700 bg-surface hover:bg-background transition drop-shadow-sm"
+          className="hidden sm:inline-flex px-4 py-2 text-sm font-medium border border-border rounded-lg text-gray-700 bg-surface dark:text-white dark:border-white hover:bg-background transition drop-shadow-sm"
         >
           Export Report
         </button>
 
         <button
           type="button"
-          className="px-4 py-2 text-sm font-medium rounded-lg bg-[#FFF0F0] text-[#FF4D4F] hover:bg-[#FFE0E0] transition"
+          className="px-4 py-2 text-sm font-medium rounded-lg bg-[#FFF0F0] dark:bg-[#FF4D4F]/5 text-[#FF4D4F] border border-[#FF4D4F] hover:bg-[#FF4D4F]/10 transition cursor-pointer"
         >
           Stop Scan
         </button>

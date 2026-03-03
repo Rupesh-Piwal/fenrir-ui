@@ -5,9 +5,9 @@ export interface ScanMeta {
     scanType: string;
     target: string;
     startedAt: string;
-    credentials: string; // The UI shows "2 Active"
+    credentials: string; 
     files: string;
-    checklists: string; // "40/350"
+    checklists: string; 
 }
 
 export type Severity = "Critical" | "High" | "Medium" | "Low";
