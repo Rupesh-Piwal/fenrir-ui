@@ -4,9 +4,11 @@ import { useTheme } from "../context/ThemeContext";
 
 interface HeaderProps {
   toggleSidebar: () => void;
+  isScanRunning?: boolean;
+  toggleScan?: () => void;
 }
 
-export default function Header({ toggleSidebar }: HeaderProps) {
+export default function Header({ toggleSidebar, isScanRunning = true, toggleScan }: HeaderProps) {
   const { theme, toggleTheme } = useTheme();
 
   return (
@@ -65,9 +67,13 @@ export default function Header({ toggleSidebar }: HeaderProps) {
 
         <button
           type="button"
-          className="px-4 py-2 text-sm font-medium rounded-lg bg-[#FFF0F0] dark:bg-[#FF4D4F]/5 text-[#FF4D4F] border border-[#FF4D4F] hover:bg-[#FF4D4F]/10 transition cursor-pointer"
+          onClick={toggleScan}
+          className={`px-4 py-2 text-sm font-medium rounded-lg transition cursor-pointer border ${isScanRunning
+              ? "bg-[#FFF0F0] dark:bg-[#FF4D4F]/5 text-[#FF4D4F] border-[#FF4D4F] hover:bg-[#FF4D4F]/10"
+              : "bg-[#F0FFF4] dark:bg-[#52C41A]/5 text-[#52C41A] border-[#52C41A] hover:bg-[#52C41A]/10"
+            }`}
         >
-          Stop Scan
+          {isScanRunning ? "Stop Scan" : "Start Scan"}
         </button>
       </section>
     </header>

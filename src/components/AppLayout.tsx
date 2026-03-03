@@ -5,6 +5,7 @@ import Header from "./Header";
 
 export default function AppLayout() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScanRunning, setIsScanRunning] = useState(true);
 
   return (
     <div className="flex h-screen overflow-hidden">
@@ -30,10 +31,14 @@ export default function AppLayout() {
 
       {/* Right Section */}
       <div className="flex flex-col flex-1">
-        <Header toggleSidebar={() => setIsOpen(true)} />
+        <Header
+          toggleSidebar={() => setIsOpen(true)}
+          isScanRunning={isScanRunning}
+          toggleScan={() => setIsScanRunning(!isScanRunning)}
+        />
 
-        <main className="flex-1 overflow-y-auto bg-background p-4">
-          <Outlet />
+        <main className="flex-1 overflow-y-auto no-scrollbar bg-background p-4">
+          <Outlet context={{ isScanRunning }} />
         </main>
       </div>
     </div>
