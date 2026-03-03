@@ -40,16 +40,16 @@ const SignupLoginForm = () => {
             <h2 className="text-lg font-medium mb-4">What's Included</h2>
             <div className="space-y-3 text-sm text-white">
               <p className="flex items-center gap-2">
-                <Check size={18} color="green" />
+                <Check size={18} color="green" aria-hidden="true" />
                 Effortlessly spider and map targets to uncover hidden security
                 flaws
               </p>
               <p className="flex items-center gap-2">
-                <Check size={18} color="green" />
+                <Check size={18} color="green" aria-hidden="true" />
                 Deliver validated findings in hours, not weeks
               </p>
               <p className="flex items-center gap-2">
-                <Check size={18} color="green" />
+                <Check size={18} color="green" aria-hidden="true" />
                 Generate enterprise-grade security reports automatically
               </p>
             </div>
@@ -57,7 +57,7 @@ const SignupLoginForm = () => {
 
           <div className="pt-6 space-y-2 text-sm text-white">
             <div className="flex items-center gap-2">
-              <Star size={18} fill="#0CC8A8" color="#0CC8A8" />
+              <Star size={18} fill="#0CC8A8" color="#0CC8A8" aria-hidden="true" />
               <span>Trustpilot</span>
             </div>
             <div className="flex items-center gap-2">
@@ -86,6 +86,7 @@ const SignupLoginForm = () => {
               type="text"
               disabled={loading}
               placeholder="First name*"
+              aria-label="First name"
               required
               className="w-full px-4 py-3 border border-border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-accent"
             />
@@ -94,6 +95,7 @@ const SignupLoginForm = () => {
               type="text"
               disabled={loading}
               placeholder="Last name*"
+              aria-label="Last name"
               required
               className="w-full px-4 py-3 border border-border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-accent"
             />
@@ -102,6 +104,7 @@ const SignupLoginForm = () => {
               type="email"
               disabled={loading}
               placeholder="Email address*"
+              aria-label="Email address"
               required
               className="w-full px-4 py-3 border border-border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-accent"
             />
@@ -110,6 +113,7 @@ const SignupLoginForm = () => {
               type="password"
               disabled={loading}
               placeholder="Password (8+ characters)*"
+              aria-label="Password"
               required
               className="w-full px-4 py-3 border border-border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-accent"
             />
@@ -119,6 +123,7 @@ const SignupLoginForm = () => {
                 type="checkbox"
                 disabled={loading}
                 required
+                aria-label="Agree to terms and conditions"
                 className="mt-1 h-4 w-4 accent-accent"
               />
               <p>
@@ -136,11 +141,11 @@ const SignupLoginForm = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-accent hover:opacity-90 text-white py-3 rounded-md text-sm font-medium transition-all flex items-center justify-center gap-2"
+              className="w-full bg-accent hover:opacity-90 text-white py-3 rounded-md text-sm font-medium transition-all flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
             >
               {loading ? (
                 <>
-                  <Loader2 size={18} className="animate-spin" />
+                  <Loader2 size={18} className="animate-spin" aria-hidden="true" />
                   Creating account...
                 </>
               ) : (

@@ -7,6 +7,7 @@ interface SeverityCardProps {
   label: string;
   count: number;
   change: number;
+  index?: number;
 }
 
 const severityStyles: Record<
@@ -26,6 +27,7 @@ const severityStyles: Record<
         strokeWidth="2.5"
         strokeLinecap="round"
         strokeLinejoin="round"
+        aria-hidden="true"
       >
         <circle cx="12" cy="12" r="10" />
         <path d="m4.9 4.9 14.2 14.2" />
@@ -45,6 +47,7 @@ const severityStyles: Record<
         strokeWidth="2.5"
         strokeLinecap="round"
         strokeLinejoin="round"
+        aria-hidden="true"
       >
         <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
         <line x1="12" x2="12" y1="9" y2="13" />
@@ -65,6 +68,7 @@ const severityStyles: Record<
         strokeWidth="2.5"
         strokeLinecap="round"
         strokeLinejoin="round"
+        aria-hidden="true"
       >
         <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
         <line x1="12" x2="12" y1="9" y2="13" />
@@ -85,6 +89,7 @@ const severityStyles: Record<
         strokeWidth="3"
         strokeLinecap="round"
         strokeLinejoin="round"
+        aria-hidden="true"
       >
         <circle cx="11" cy="11" r="8" />
         <path d="m21 21-4.3-4.3" />
@@ -98,13 +103,14 @@ export default function SeverityCard({
   label,
   count,
   change,
+  index = 0,
 }: SeverityCardProps) {
   const styles = severityStyles[level];
   const isIncrease = change > 0;
 
   return (
     <article
-      className="
+      className={`
         bg-surface
         border border-border
         rounded-xl
@@ -112,7 +118,10 @@ export default function SeverityCard({
         transition
         flex flex-col
         gap-4
-      "
+        animate-fade-slide-up
+        stagger-${index + 1}
+      `}
+      aria-label={`${label}: ${count}`}
     >
       <header className="flex items-center justify-between">
         <h3 className="text-text-secondary text-xs sm:text-sm font-semibold tracking-wide">
@@ -130,14 +139,13 @@ export default function SeverityCard({
         </span>
 
         <div
-          className={`flex items-center text-[10px] font-semibold ${
-            isIncrease ? "text-[#E63946]" : "text-accent"
-          }`}
+          className={`flex items-center text-[10px] font-semibold ${isIncrease ? "text-[#E63946]" : "text-accent"
+            }`}
         >
           {isIncrease ? (
-            <ArrowUp size={14} strokeWidth={3} />
+            <ArrowUp size={14} strokeWidth={3} aria-hidden="true" />
           ) : (
-            <ArrowDown size={14} strokeWidth={3} />
+            <ArrowDown size={14} strokeWidth={3} aria-hidden="true" />
           )}
 
           <span className="ml-1 hidden sm:inline">

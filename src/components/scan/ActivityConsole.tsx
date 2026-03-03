@@ -3,7 +3,14 @@ import {
   scanLogs as defaultScanLogs,
   type ScanLog,
 } from "../../data/active-scan-detail/scanData";
-import { ChevronDown, X, Timer, RotateCw, CheckCircle2, Shield } from "lucide-react";
+import {
+  ChevronDown,
+  X,
+  Timer,
+  RotateCw,
+  CheckCircle2,
+  Shield,
+} from "lucide-react";
 
 interface ActivityConsoleProps {
   logs?: ScanLog[];
@@ -17,61 +24,91 @@ export const ActivityConsole = ({
   const [activeTab, setActiveTab] = useState<"logs" | "verification">("logs");
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // Auto-scroll to bottom when new logs are added
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   }, [logs]);
 
+  const handleTabKeyDown = (
+    e: React.KeyboardEvent,
+    tab: "logs" | "verification",
+  ) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      setActiveTab(tab);
+    }
+  };
+
   return (
     <div className="bg-surface border border-border rounded-xl shadow-sm flex flex-col h-full overflow-hidden">
-      {/* Console Header */}
       <div className="flex items-center justify-between px-4 py-3 border-b border-border">
         <div className="flex items-center gap-3">
           <div
             className={`w-2 h-2 rounded-full ${isScanRunning ? "bg-accent animate-pulse" : "bg-text-secondary"}`}
+            aria-hidden="true"
           ></div>
           <h3 className="text-sm font-semibold text-text-primary">
             Live Scan Console
           </h3>
           <div className="flex items-center gap-1.5 bg-background border border-border px-3 py-1 rounded-full text-xs text-text-secondary ml-2">
-            <Timer className="w-3.5 h-3.5" />
-
+            <Timer className="w-3.5 h-3.5" aria-hidden="true" />
             <span>{isScanRunning ? "Running..." : "Paused"}</span>
           </div>
         </div>
         <div className="flex flex-row items-center gap-2 text-text-secondary">
-          <ChevronDown className="w-4 h-4 cursor-pointer hover:text-text-primary transition-colors" />
-          <X className="w-4 h-4 cursor-pointer hover:text-text-primary transition-colors" />
+          <button
+            aria-label="Minimize console"
+            className="p-1 hover:text-text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 rounded"
+          >
+            <ChevronDown className="w-4 h-4" />
+          </button>
+          <button
+            aria-label="Close console"
+            className="p-1 hover:text-text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 rounded"
+          >
+            <X className="w-4 h-4" />
+          </button>
         </div>
       </div>
 
-      {/* Tabs */}
-      <div className="flex items-center border-b border-border px-4 text-sm">
+      <div
+        className="flex items-center border-b border-border px-4 text-sm"
+        role="tablist"
+        aria-label="Console tabs"
+      >
         <div
+          role="tab"
+          tabIndex={0}
+          aria-selected={activeTab === "logs"}
           onClick={() => setActiveTab("logs")}
+          onKeyDown={(e) => handleTabKeyDown(e, "logs")}
           className={`px-6 py-3 border-b-2 transition-all cursor-pointer ${activeTab === "logs"
-            ? "border-accent text-accent font-medium"
-            : "border-transparent text-text-secondary hover:text-text-primary"
+              ? "border-accent text-accent font-medium"
+              : "border-transparent text-text-secondary hover:text-text-primary"
             }`}
         >
           Activity Log
         </div>
         <div
+          role="tab"
+          tabIndex={0}
+          aria-selected={activeTab === "verification"}
           onClick={() => setActiveTab("verification")}
+          onKeyDown={(e) => handleTabKeyDown(e, "verification")}
           className={`px-6 py-3 border-b-2 transition-all cursor-pointer ${activeTab === "verification"
-            ? "border-accent text-accent font-medium"
-            : "border-transparent text-text-secondary hover:text-text-primary"
+              ? "border-accent text-accent font-medium"
+              : "border-transparent text-text-secondary hover:text-text-primary"
             }`}
         >
           Verification Loops
         </div>
       </div>
 
-      {/* Content Scroll Area */}
       <div
         ref={scrollRef}
+        role="tabpanel"
+        aria-label={activeTab === "logs" ? "Activity log panel" : "Verification loops panel"}
         className="flex-1 overflow-y-auto p-4 bg-white dark:bg-[#0a0c10] font-mono text-sm scroll-smooth"
       >
         {activeTab === "logs" ? (
@@ -131,15 +168,21 @@ export const ActivityConsole = ({
           </div>
         ) : (
           <div className="space-y-6 animate-in fade-in duration-500">
-            {/* Mock Verification Loops Content */}
             <div className="flex flex-col gap-4">
               <div className="p-4 rounded-lg bg-surface border border-border flex items-start gap-4">
                 <div className="p-2 rounded-full bg-accent/10">
-                  <RotateCw className="w-5 h-5 text-accent animate-spin" />
+                  <RotateCw
+                    className="w-5 h-5 text-accent animate-spin"
+                    aria-hidden="true"
+                  />
                 </div>
                 <div className="flex-1">
-                  <h4 className="text-text-primary font-semibold mb-1">Payload Fuzzing in Progress</h4>
-                  <p className="text-text-secondary text-xs mb-3">Testing SQL injection patterns on /api/auth/login</p>
+                  <h4 className="text-text-primary font-semibold mb-1">
+                    Payload Fuzzing in Progress
+                  </h4>
+                  <p className="text-text-secondary text-xs mb-3">
+                    Testing SQL injection patterns on /api/auth/login
+                  </p>
                   <div className="w-full bg-border h-1.5 rounded-full overflow-hidden">
                     <div className="bg-accent h-full w-[65%] rounded-full animate-pulse transition-all duration-1000"></div>
                   </div>
@@ -148,21 +191,36 @@ export const ActivityConsole = ({
 
               <div className="p-4 rounded-lg bg-surface border border-border flex items-start gap-4 opacity-80">
                 <div className="p-2 rounded-full bg-green-500/10">
-                  <CheckCircle2 className="w-5 h-5 text-green-500" />
+                  <CheckCircle2
+                    className="w-5 h-5 text-green-500"
+                    aria-hidden="true"
+                  />
                 </div>
                 <div className="flex-1">
-                  <h4 className="text-text-primary font-semibold mb-1">Auth Header Bypass Verified</h4>
-                  <p className="text-text-secondary text-xs">Loop completed: 12 payloads tested. 1 vulnerability confirmed.</p>
+                  <h4 className="text-text-primary font-semibold mb-1">
+                    Auth Header Bypass Verified
+                  </h4>
+                  <p className="text-text-secondary text-xs">
+                    Loop completed: 12 payloads tested. 1 vulnerability
+                    confirmed.
+                  </p>
                 </div>
               </div>
 
               <div className="p-4 rounded-lg bg-surface border border-border flex items-start gap-4">
                 <div className="p-2 rounded-full bg-blue-500/10">
-                  <Shield className="w-5 h-5 text-blue-500" />
+                  <Shield
+                    className="w-5 h-5 text-blue-500"
+                    aria-hidden="true"
+                  />
                 </div>
                 <div className="flex-1">
-                  <h4 className="text-text-primary font-semibold mb-1">CORS Policy Analysis</h4>
-                  <p className="text-text-secondary text-xs mb-3">Running verification loop for domain origin whitelist.</p>
+                  <h4 className="text-text-primary font-semibold mb-1">
+                    CORS Policy Analysis
+                  </h4>
+                  <p className="text-text-secondary text-xs mb-3">
+                    Running verification loop for domain origin whitelist.
+                  </p>
                   <div className="w-full bg-border h-1.5 rounded-full overflow-hidden">
                     <div className="bg-blue-500 h-full w-[30%] rounded-full animate-pulse transition-all duration-1000"></div>
                   </div>

@@ -9,13 +9,13 @@ interface SidebarProps {
 
 export default function Sidebar({ closeSidebar }: SidebarProps) {
   return (
-    <aside className="w-64 h-full bg-surface flex flex-col">
+    <aside className="w-64 h-full bg-surface flex flex-col" aria-label="Main navigation">
       <div className="flex-1 overflow-y-auto">
         <div className="pl-6 pt-6">
           <Logo textColor="text-accent" />
         </div>
 
-        <nav className="pr-4 mt-10 space-y-1">
+        <nav className="pr-4 mt-10 space-y-1" aria-label="Primary">
           {navItemsTop.map((item) => {
             const Icon = item.icon;
 
@@ -25,14 +25,13 @@ export default function Sidebar({ closeSidebar }: SidebarProps) {
                 to={item.path}
                 onClick={closeSidebar}
                 className={({ isActive }) =>
-                  `flex items-center gap-3 pl-8 pr-4 py-3 text-sm font-medium transition-all rounded-full ${
-                    isActive
-                      ? "bg-[#0CC8A8]/20 text-accent"
-                      : "text-text-secondary hover:bg-background"
+                  `flex items-center gap-3 pl-8 pr-4 py-3 text-sm font-medium transition-all rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 ${isActive
+                    ? "bg-[#0CC8A8]/20 text-accent"
+                    : "text-text-secondary hover:bg-background"
                   }`
                 }
               >
-                <Icon size={18} />
+                <Icon size={18} aria-hidden="true" />
                 {item.name}
               </NavLink>
             );
@@ -41,7 +40,7 @@ export default function Sidebar({ closeSidebar }: SidebarProps) {
 
         <div className="my-6 border-t border-border/50" />
 
-        <nav className="pr-4 space-y-1">
+        <nav className="pr-4 space-y-1" aria-label="Secondary">
           {navItemsBottom.map((item) => {
             const Icon = item.icon;
 
@@ -51,14 +50,13 @@ export default function Sidebar({ closeSidebar }: SidebarProps) {
                 to={item.path}
                 onClick={closeSidebar}
                 className={({ isActive }) =>
-                  `flex items-center gap-3 pl-8 pr-4 py-3 text-sm font-medium transition-all rounded-full ${
-                    isActive
-                      ? "bg-[#0CC8A8]/20 text-accent"
-                      : "text-text-secondary hover:bg-background"
+                  `flex items-center gap-3 pl-8 pr-4 py-3 text-sm font-medium transition-all rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 ${isActive
+                    ? "bg-[#0CC8A8]/20 text-accent"
+                    : "text-text-secondary hover:bg-background"
                   }`
                 }
               >
-                <Icon size={18} />
+                <Icon size={18} aria-hidden="true" />
                 {item.name}
               </NavLink>
             );
@@ -71,7 +69,7 @@ export default function Sidebar({ closeSidebar }: SidebarProps) {
           <div className="flex items-center gap-3">
             <img
               src="https://i.pravatar.cc/40"
-              alt="avatar"
+              alt="User avatar"
               className="w-10 h-10 rounded-full"
             />
             <div>
@@ -81,7 +79,7 @@ export default function Sidebar({ closeSidebar }: SidebarProps) {
               </p>
             </div>
           </div>
-          <ChevronRight size={16} />
+          <ChevronRight size={16} aria-hidden="true" />
         </div>
       </div>
     </aside>

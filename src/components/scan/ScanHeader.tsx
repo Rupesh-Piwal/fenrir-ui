@@ -12,38 +12,52 @@ interface ScanHeaderProps {
   activeStageIndex?: number;
 }
 
-export const ScanHeader = ({ progress = 0, activeStageIndex = 0 }: ScanHeaderProps) => {
-  const getStageIcon = (index: number, isActive: boolean, isCompleted: boolean) => {
-    const colorClass = isActive ? "text-accent" : (isCompleted ? "text-accent" : "text-text-secondary");
+export const ScanHeader = ({
+  progress = 0,
+  activeStageIndex = 0,
+}: ScanHeaderProps) => {
+  const getStageIcon = (
+    index: number,
+    isActive: boolean,
+    isCompleted: boolean,
+  ) => {
+    const colorClass = isActive
+      ? "text-accent"
+      : isCompleted
+        ? "text-accent"
+        : "text-text-secondary";
     switch (index) {
       case 0:
-        return <Search className={`w-5 h-5 ${colorClass}`} />;
+        return <Search className={`w-5 h-5 ${colorClass}`} aria-hidden="true" />;
       case 1:
-        return <Network className={`w-5 h-5 ${colorClass}`} />;
+        return <Network className={`w-5 h-5 ${colorClass}`} aria-hidden="true" />;
       case 2:
-        return <FlaskConical className={`w-5 h-5 ${colorClass}`} />;
+        return <FlaskConical className={`w-5 h-5 ${colorClass}`} aria-hidden="true" />;
       case 3:
-        return <ClipboardCheck className={`w-5 h-5 ${colorClass}`} />;
+        return <ClipboardCheck className={`w-5 h-5 ${colorClass}`} aria-hidden="true" />;
       case 4:
-        return <FileText className={`w-5 h-5 ${colorClass}`} />;
+        return <FileText className={`w-5 h-5 ${colorClass}`} aria-hidden="true" />;
       default:
         return null;
     }
   };
 
-  // Calculate SVG stroke-dashoffset for the animated ring
-  const radius = 56; // 3.5rem radius approx
+  const radius = 56;
   const circumference = 2 * Math.PI * radius;
   const strokeDashoffset = circumference - (progress / 100) * circumference;
 
   return (
     <div className="bg-surface border border-border rounded-xl p-6 flex flex-col md:flex-row shadow-sm">
-      {/* Left Progress Section */}
       <div className="flex-shrink-0 flex items-center justify-center md:border-r border-border pr-8 mb-6 md:mb-0">
-        <div className="relative w-32 h-32 flex flex-col items-center justify-center rounded-full bg-[#11161d]">
-          {/* SVG Circular Progress Ring */}
-          <svg className="absolute inset-0 w-full h-full transform -rotate-90">
-            {/* Background ring */}
+        <div
+          className="relative w-32 h-32 flex flex-col items-center justify-center rounded-full bg-[#11161d]"
+          role="progressbar"
+          aria-valuenow={Math.round(progress)}
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-label={`Scan progress: ${Math.round(progress)}%`}
+        >
+          <svg className="absolute inset-0 w-full h-full transform -rotate-90" aria-hidden="true">
             <circle
               cx="64"
               cy="64"
@@ -53,7 +67,6 @@ export const ScanHeader = ({ progress = 0, activeStageIndex = 0 }: ScanHeaderPro
               fill="none"
               className="text-[#1e2532]"
             />
-            {/* Dynamic animated ring */}
             <circle
               cx="64"
               cy="64"
@@ -67,21 +80,23 @@ export const ScanHeader = ({ progress = 0, activeStageIndex = 0 }: ScanHeaderPro
               strokeLinecap="round"
             />
           </svg>
-          <span className="text-3xl font-bold text-accent z-10">{Math.round(progress)}%</span>
-          <span className="text-xs text-text-secondary mt-1 z-10">{progress === 100 ? "Completed" : "In Progress"}</span>
+          <span className="text-3xl font-bold text-accent z-10">
+            {Math.round(progress)}%
+          </span>
+          <span className="text-xs text-text-secondary mt-1 z-10">
+            {progress === 100 ? "Completed" : "In Progress"}
+          </span>
         </div>
       </div>
 
       <div className="flex-1 md:pl-8 flex flex-col justify-between">
-        {/* Stages Timeline */}
         <div className="mb-6 w-full max-w-4xl pt-4">
           <div className="relative flex justify-between items-center w-full">
-            {/* Background line */}
-            <div className="absolute top-[24px] left-0 right-0 h-[2px] bg-border z-0"></div>
-            {/* Animated dynamic line filling up based on progress */}
+            <div className="absolute top-[24px] left-0 right-0 h-[2px] bg-border z-0" aria-hidden="true"></div>
             <div
               className="absolute top-[24px] left-0 h-[2px] bg-accent z-0 transition-all duration-300 ease-linear"
               style={{ width: `${progress}%` }}
+              aria-hidden="true"
             ></div>
 
             {scanMeta.stages.map((stage, index) => {
@@ -95,10 +110,10 @@ export const ScanHeader = ({ progress = 0, activeStageIndex = 0 }: ScanHeaderPro
                 >
                   <div
                     className={`w-12 h-12 rounded-full flex justify-center items-center mb-3 transition-colors ${isActive
-                      ? "bg-[#0b2824] border border-accent/20"
-                      : isCompleted
-                        ? "bg-surface border-2 border-accent text-accent"
-                        : "bg-surface border border-border text-text-secondary"
+                        ? "bg-[#0b2824] border border-accent/20"
+                        : isCompleted
+                          ? "bg-surface border-2 border-accent text-accent"
+                          : "bg-surface border border-border text-text-secondary"
                       }`}
                   >
                     {getStageIcon(index, isActive, isCompleted)}
@@ -114,7 +129,6 @@ export const ScanHeader = ({ progress = 0, activeStageIndex = 0 }: ScanHeaderPro
           </div>
         </div>
 
-        {/* Metadata Grid */}
         <div className="grid grid-cols-2 lg:grid-cols-6 gap-4">
           <div>
             <p className="text-xs text-text-secondary mb-1">Scan Type</p>

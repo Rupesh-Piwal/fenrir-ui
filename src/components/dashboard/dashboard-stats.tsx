@@ -5,8 +5,8 @@ export default function DashboardStats() {
   const { meta, severities } = dashboardStats;
 
   return (
-    <section className="w-full bg-surface bg-opacity-0 border border-border rounded-lg p-1">
-      <div className="hidden md:block pt-2 pb-6 text-xs text-text-secondary font-medium px-2 ">
+    <section className="w-full bg-surface bg-opacity-0 border border-border rounded-lg p-1 animate-fade-in">
+      <div className="hidden md:block pt-2 pb-6 text-xs text-text-secondary font-medium px-2">
         <div className="flex flex-wrap items-center justify-between">
           <div className="flex flex-wrap items-center gap-6">
             <span className="flex items-center gap-2">
@@ -53,6 +53,7 @@ export default function DashboardStats() {
               strokeWidth="2.5"
               strokeLinecap="round"
               strokeLinejoin="round"
+              aria-hidden="true"
             >
               <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
               <path d="M3 3v5h5" />
@@ -65,8 +66,8 @@ export default function DashboardStats() {
 
       <div className="py-6 border-b border-border/50">
         <div className="grid gap-6 grid-cols-2 md:grid-cols-4 px-2">
-          {severities.map((item) => (
-            <SeverityCard key={item.level} {...item} />
+          {severities.map((item, index) => (
+            <SeverityCard key={item.level} {...item} index={index} />
           ))}
         </div>
       </div>
